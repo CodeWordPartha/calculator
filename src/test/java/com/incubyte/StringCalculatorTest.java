@@ -8,6 +8,9 @@ public class StringCalculatorTest {
     @Test
     public void testEmptyStringReturnsZero() {
         StringCalculator calc = new StringCalculator();
-        assertEquals(3, calc.add("//;\n1;2"));
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> {
+            calc.add("1,-2,3");
+        });
+        assertEquals("negative numbers not allowed -2", ex.getMessage());
     }
 }
